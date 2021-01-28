@@ -25,6 +25,8 @@
    git clone https://github.com/jellyfin/jellyfin-tizen.git
    ```
 
+### For addtional information look [Wiki](https://github.com/jellyfin/jellyfin-tizen/wiki)   
+
 ### Build Jellyfin Web
 
 ```sh
@@ -99,6 +101,3 @@ tizen package -t wgt -o . -- .buildResult
    tizen install -n Jellyfin.wgt -t UE65NU7400
    ```
    > Specify target with `-t` option. Use `sdb devices` to list them.
-
-
-### For addtional information look [Wiki](https://github.com/jellyfin/jellyfin-tizen/wiki)
