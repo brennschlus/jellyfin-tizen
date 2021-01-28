@@ -1,9 +1,6 @@
 <h1 align="center">Jellyfin for Tizen</h1>
 <h3 align="center">Part of the <a href="https://jellyfin.media">Jellyfin Project</a></h3>
 
-## Build Process
-_Also look [Wiki](https://github.com/jellyfin/jellyfin-tizen/wiki)._
-
 ### Prerequisites
 * Oracle JDK 8 <sup>_for Tizen Studio_</sup>
 * Tizen Studio with IDE or Tizen Studio with CLI (<a href="https://developer.tizen.org/development/tizen-studio/download">https://developer.tizen.org/development/tizen-studio/download</a>)
@@ -41,14 +38,24 @@ If any changes are made to `jellyfin-web/`, the `jellyfin-web/dist/` directory w
 
 ### Prepare Interface
 
+1. Initialize `JELLYFIN_WEB_DIR` environment variable
+
+Bash
+```sh
+JELLYFIN_WEB_DIR=../jellyfin-web/dist
+```
+Powershell
+```powershell
+$env:JELLYFIN_WEB_DIR="C:\jellyfin\jellyfin-web\dist"
+```
+> The `JELLYFIN_WEB_DIR` environment variable can be used to override the location of `jellyfin-web`.
+2. Build interface.
 ```sh
 cd jellyfin-tizen
-JELLYFIN_WEB_DIR=../jellyfin-web/dist yarn install
+yarn install
 ```
 
-> You should get `jellyfin-tizen/www/` directory.
-
-> The `JELLYFIN_WEB_DIR` environment variable can be used to override the location of `jellyfin-web`.
+> You should get `jellyfin-tizen/www/` directory
 
 If any changes are made to `jellyfin-web/dist/`, the `jellyfin-tizen/www/` directory will need to be rebuilt using the command above.
 
@@ -83,9 +90,15 @@ tizen package -t wgt -o . -- .buildResult
    sdb connect YOUR_TV_IP
    ```
 4. `Permit to install applications` on your TV with Device Manager from Tizen Studio. Or with sdb.
-   > TODO: Find a command
-5. Install package.
+   > For sdb push you must have root permission on tv 
+   ```sh
+   sdb push profile.xml /home/developer
+   ```
+5. Install package.   
    ```sh
    tizen install -n Jellyfin.wgt -t UE65NU7400
    ```
    > Specify target with `-t` option. Use `sdb devices` to list them.
+
+
+### For addtional information look [Wiki](https://github.com/jellyfin/jellyfin-tizen/wiki)
